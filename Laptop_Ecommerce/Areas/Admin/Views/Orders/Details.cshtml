@@ -1,0 +1,135 @@
+﻿@model Laptop_Ecommerce.Models.OrderDetails
+<div class="row">
+    <div class="col-12">
+        <h2 class="text-primary text-center">
+            All Details Of Order By :&nbsp; <i class="fas fa-user"></i>&nbsp;@Model.OrderHeader.Name
+        </h2>
+    </div>
+</div>
+
+<div class="border container p-2 m-2">
+    <div class="row">
+        <div class="text-center offset-4">
+            <a asp-action="Index" class="btn btn-primary">Back To All The Orders</a>
+        </div>
+    </div>
+    <table class="table table-striped table-bordered table-hover table-responsive active">
+        <thead>
+            <tr>
+                <th class="text-center text-primary">Customer Name      :</th>
+                <td class="text-center text-success">@Model.OrderHeader.Name</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Payment Status     :</th>
+                <td class="text-center text-success">@Model.OrderHeader.PaymentStatus</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Total Amount       :</th>
+                <td class="text-center text-success">@Model.OrderHeader.OrderTotal</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Order Status       :</th>
+                <td class="text-center text-success">@Model.OrderHeader.OrderStatus</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Date & Time        :</th>
+                <td class="text-center text-success">@Model.OrderHeader.OrderDate</td>
+            </tr>
+            <tr>
+                <th class="text-center text-primary">TransactionId        :</th>
+                <td class="text-center text-success">@Model.OrderHeader.TransactionId</td>
+            </tr>
+        </thead>
+    </table>
+    <h2 class="text-center text-primary"><i class="fas fa-laptop-code"></i>Laptop Details</h2>
+    <table class="table table-striped table-bordered table-hover table-responsive active">
+        <thead>
+            <tr>
+                <th class="text-center text-primary">Brand      :</th>
+                <td class="text-center text-success">@Model.Laptop.LaptopCompany.Name</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Model Name     :</th>
+                <td class="text-center text-success">@Model.Laptop.ModelName</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Processor       :</th>
+                <td class="text-center text-success">@Model.Laptop.Processor.Name</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Graphics Card       :</th>
+                <td class="text-center text-success">@Model.Laptop.GraphicsCard.Name</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Ram Memory        :</th>
+                <td class="text-center text-success">@Model.Laptop.RamMemory</td>
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Storage Space        :</th>
+                <td class="text-center text-success">@Model.Laptop.StorageSpace</td>
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Operating System        :</th>
+                <td class="text-center text-success">@Model.Laptop.OperatingSystem</td>
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Colour        :</th>
+                <td class="text-center text-success">@Model.Laptop.Colour</td>
+            </tr>
+        </thead>
+    </table>
+    <h2 class="text-center text-primary"><i class="fas fa-user"></i>User's Details'</h2>
+    <table class="table table-striped table-bordered table-hover table-responsive active">
+        <thead>
+            <tr>
+                <th class="text-center text-primary">Name      :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.Name</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Email Address     :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.Email</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Contact Number     :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.PhoneNumber</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Street Address       :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.StreetAddress</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">City       :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.City</td>
+
+            </tr>
+            <tr>
+                <th class="text-center text-primary">State        :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.State</td>
+            </tr>
+            <tr>
+                <th class="text-center text-primary">Postal Code        :</th>
+                <td class="text-center text-success">@Model.OrderHeader.ApplicationUser.PostalCode</td>
+            </tr>
+        </thead>
+    </table>
+</div>
+@*@section scripts
+    {
+    <script src="~/js/details.js"></script>
+}*@
+@*<tbody>
+    <tr>
+    </tr>
+</tbody>*@

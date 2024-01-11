@@ -1,0 +1,42 @@
+﻿@model Project_Ecomm_Models.Category
+@{
+    ViewData["Title"] = "Upsert";
+    var title = Model.Id != 0 ? "EditCategory" : "Newcategory";
+    <h2 class="text-primary"><i class="fas fa-fighter-jet text-info"></i></h2>
+}
+<form method="post">
+    <div class="row">
+        <div class="col-10 border-bottom">
+            <h2 class="text-primary">@title</h2>
+        </div>
+        <div asp-validation-summary="ModelOnly" class="text-dark"></div>
+        <div class="col-8">
+            <div class="form-group row p-2 m-2">
+                <div class="col-4">
+                    <i class="far fa-thumbs-up"></i>
+                    <label asp-for="Name"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control"/>
+                    <span asp-validation-for="Name" class="text-dark"></span>
+                </div>
+            </div>
+            <div class="form-group row p-2 m-2">
+                <div class="col-8 offset-4">
+                    @if(Model.Id!=0)
+                    {
+                        <partial name="_EditAndBackToListButton" />
+                    }
+                    else
+                    {
+                        <partial name="_CreateAndBackToListButton" />
+                    }
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,71 @@
+﻿@model Project_Ecomm_Models.OrderHeader
+<div class="row">
+    <div class="col-12">
+        <h2 class=" text-primary text-center">
+            All Detail of Order :&nbsp;<i class="fas fa-user"></i>&nbsp;@Model.Name
+        </h2>
+    </div>
+</div>
+<div class="border container p-2 m-2">
+    <table class="table table-striped table-bordered table-hover table-responsive active">
+        <thead>
+            <tr>
+                <th class="text-primary text-center">Customer Name :</th>
+                <td class="text-success text-center">@Model.Name</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Payment Status :</th>
+                <td class="text-success text-center">@Model.PaymentStatus</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Total Amount :</th>
+                <td class="text-success text-center">@Model.OrderTotal</td>
+            </tr>
+             <tr>
+                <th class="text-primary text-center">Order Status :</th>
+                <td class="text-success text-center">@Model.OrderStatus</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Date Time :</th>
+                <td class="text-success text-center">@Model.OrderDate</td>
+            </tr>
+             <tr>
+                <th class="text-primary text-center">TransactionId :</th>
+                <td class="text-success text-center">@Model.TransactionId</td>
+            </tr>
+        </thead>
+    </table>
+    <h2 class="text-primary text-center "><i class="fas fa-user"></i> User Detail</h2>
+    <table class="table table-striped table-bordered table-hover table-responsive active">
+        <thead>
+            <tr>
+                <th class="text-primary text-center">Name :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.Name</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Email :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.Email</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Phone Number :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.PhoneNumber</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Address :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.StreetAddress</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">City :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.City</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">State :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.State</td>
+            </tr>
+            <tr>
+                <th class="text-primary text-center">Postal Code :</th>
+                <td class="text-success text-center">@Model.ApplicationUser.PostalCode</td>
+            </tr>
+        </thead>
+    </table>
+</div>

@@ -1,0 +1,159 @@
+﻿@using Laptop_Ecommerce.Utility;
+@using Microsoft.AspNetCore.Http
+@inject IHttpContextAccessor httpContextAccessor
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>@ViewData["Title"] - Laptop_Ecommerce</title>
+    <link rel="stylesheet" href="~/lib/bootstrap/dist/css/bootstrapLumen.css" />
+    <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
+    <link rel="stylesheet" href="~/Laptop_Ecommerce.styles.css" asp-append-version="true" />
+
+    @*CSS                                                                                                                                                                                                                                                                                                                                                                                                                                                                                                   LINKS*@
+    <link rel="stylesheet" href="https://cdn.datatables.net/1.10.16/css/jquery.dataTables.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.css" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/css/toastr.min.css" />
+
+    <link rel="icon"type="image/x-icon"href="~/favicon.ico"/>
+
+</head>
+<body>
+    <header>
+        <nav class="navbar navbar-expand-sm navbar-toggleable-sm navbar-light bg-primary border-bottom box-shadow mb-3">
+            <div class="container-fluid">
+                <a class="navbar-brand text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                    @* Buy Laptops
+                    <i class="fas fa-laptop-code"></i>*@
+                    <img src="~/browsing.png" height="35" width="35" />
+                </a>
+                <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target=".navbar-collapse" aria-controls="navbarSupportedContent"
+                        aria-expanded="false" aria-label="Toggle navigation">
+                    <span class="navbar-toggler-icon"></span>
+                </button>
+                <div class="navbar-collapse collapse d-sm-inline-flex justify-content-between">
+                    <ul class="navbar-nav flex-grow-1">
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Index">
+                                <i class="fas fa-home"></i>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a class="nav-link text-white" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+                        </li>
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-brend dropdown">
+                                <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Content-Management</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="LaptopCompany" asp-action="Index">Laptop Companies</a>
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="Processor" asp-action="Index">Processors</a>
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="GraphicsCard" asp-action="Index">GraphicsCards</a>
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="Laptop" asp-action="Index">Laptops</a>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.Role_Admin) || (User.IsInRole(SD.Role_Employee)))
+                        {
+                            <li class="nav-brend dropdown">
+                                <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Companies / Users</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="Company" asp-action="Index">Companies</a>
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="User" asp-action="Index">Users</a>
+                                </div>
+                            </li>
+                        }
+                        @if (User.IsInRole(SD.Role_Admin))
+                        {
+                            <li class="nav-brend dropdown">
+                                <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Order-Management</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item text-center" asp-area="Admin" asp-controller="Orders" asp-action="Index">All Orders</a>
+                                </div>
+                            </li>
+                        }
+                        @*User Orders*@
+                         @if (User.IsInRole(SD.Role_Individual))
+                        {
+                            <li class="nav-brend dropdown">
+                                <a class="nav-link dropdown-toggle text-white" data-bs-toggle="dropdown" href="#" role="button" aria-haspopup="true" aria-expanded="false">Orders History</a>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item text-center" asp-area="Customer" asp-controller="UserOrder" asp-action="Index">Previous Orders</a>
+                                </div>
+                            </li>
+                        }
+
+                        @if (httpContextAccessor.HttpContext.Session.GetInt32(SD.Ss_CartSessionCount) != null && httpContextAccessor.HttpContext.Session.GetInt32(SD.Ss_CartSessionCount) != 0)
+                        {
+                            var count = httpContextAccessor.HttpContext.Session.GetInt32(SD.Ss_CartSessionCount);
+                            <li>
+                                <a asp-area="Customer" asp-controller="Cart" asp-action="Index" class="nav-link text-white">
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;(@count)
+                                </a>
+                            </li>
+                        }
+                        else
+                        {
+                            <li>
+                                <a class="nav-link text-white">
+                                    <i class="fas fa-shopping-cart"></i>&nbsp;(0)
+                                </a>
+                            </li>
+                        }
+                    </ul>
+                    @using (Html.BeginForm("Index", "Home", FormMethod.Get))
+                    {
+                        <b class="text-white">Search by</b>
+                        @Html.RadioButton("searchBy","company",true)
+                        <span class="text-white">Brand</span>
+                        @Html.RadioButton("searchBy","modelName",true)
+                        <span class="text-white">Model Name</span>
+                        @Html.TextBox("search")
+                        <input type="submit" value="search" />
+                    }
+
+
+                    @* <form asp-controller="Home" asp-action="Index" method="get" class="d-flex">
+                    <input class="form-control me-sm-2" type="text" name="SearchString" placeholder="Search">
+                    <button class="btn btn-secondary my-2 my-sm-0" type="submit">Search</button>
+                    </form>*@
+                    @*<form asp-controller="Home" asp-action="Index" method="get">
+                    <p>
+                    Title: <input type="text" name="SearchString" />
+                    <input type="submit" value="Filter" />
+                    </p>
+                    </form>*@
+                    <partial name="_LoginPartial" />
+                </div>
+            </div>
+        </nav>
+    </header>
+    <div class="container">
+        <main role="main" class="pb-3">
+            @RenderBody()
+        </main>
+    </div>
+
+    <footer class="border-top footer text-muted bg-primary">
+        <div class="container text-white">
+            &copy; 2023 - Laptop_Ecommerce - <a class="text-info" asp-area="" asp-controller="Home" asp-action="Privacy">Privacy</a>
+        </div>
+    </footer>
+    <script src="~/lib/jquery/dist/jquery.min.js"></script>
+    <script src="~/lib/bootstrap/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="~/js/site.js" asp-append-version="true"></script>
+
+    @*JS LINKS*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jqueryui/1.12.1/jquery-ui.min.js"></script>
+    <script src="https://cdn.datatables.net/1.10.16/js/jquery.dataTables.min.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+    <script src="https://unpkg.com/sweetalert/dist/sweetalert.min.js"></script>
+    <script src="https://kit.fontawesome.com/e19c476714.js"></script>
+
+    @*Slider*@
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/slick-carousel/1.8.1/slick.min.js"></script>
+
+    @await RenderSectionAsync("Scripts", required: false)
+</body>
+</html>

@@ -1,0 +1,46 @@
+﻿@model Laptop_Ecommerce.Models.Processor
+@{
+    ViewData["Title"] = "Upsert";
+    var title = Model.Id != 0 ? "Edit Processor" : "New Processor";
+}
+<form method="post">
+    <div class="row">
+        <div class="col-10 border-bottom">
+            <h2 class="text-primary text-center">
+                @if (Model.Id == 0)
+                {
+                    <i class="fas fa-plus"></i>
+
+                    @title
+                }
+                else
+                {
+                    <i class="fas fa-edit"></i>
+
+                    @title
+                }
+            </h2>
+        </div>
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="col-8">
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="Name" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control text-center" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating  p-2 m-2">
+                <div class="offset-4">
+                    <partial name="_SaveUpdateBackToListButtons" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

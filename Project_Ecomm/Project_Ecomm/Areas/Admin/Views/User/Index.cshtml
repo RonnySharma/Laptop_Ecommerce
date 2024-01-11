@@ -1,0 +1,27 @@
+﻿<div class="row">
+    <div class="col-10">
+        <h2 class="text-primary">
+            <i class="fas fa-recycle"></i>UserList
+        </h2>
+    </div>
+    <div class="col-2">
+        <a asp-area="Identity" class="btn btn-info" asp-page="/Account/Register">
+            <i class="fas fa-plus-square"></i> NewUser
+        </a>
+    </div>
+</div>
+<table id="tblData" class="table table-bordered table-striped table-active">
+    <thead>
+        <tr>
+            <th><i class="fas fa-male text-primary"></i>Name</th>
+            <th><i class="fas fa-map-pin text-primary"></i>Email</th>
+            <th><i class="fas fa-tty text-primary"></i>PH.Number</th>
+            <th><i class="fas fa-tags text-primary"></i>Company</th>
+            <th><i class="fas fa-thumbtack text-primary"></i>Role</th>
+            <th><i class="fas fa-wrench text-primary"></i>Action</th>
+        </tr>
+    </thead>
+</table>
+@section Scripts{
+    <script src="~/js/user.js"></script>
+}

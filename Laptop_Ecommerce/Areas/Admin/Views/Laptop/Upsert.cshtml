@@ -1,0 +1,214 @@
+﻿@model Laptop_Ecommerce.Models.ViewModels.LaptopVM
+@{
+    ViewData["Title"] = "Upsert";
+    var title = Model.laptop.Id != 0 ? "Edit Laptop" : "New Laptop";
+}
+<h2 class="text-center text-primary">
+    @if (Model.laptop.Id == 0)
+    {
+        <i class="fas fa-plus"></i>
+
+        @title
+    }
+    else
+    {
+        <i class="fas fa-edit"></i>
+
+        @title
+    }
+</h2>
+<div class="row">
+    <div class="col-8 ">
+
+        <form method="post" enctype="multipart/form-data">
+
+            @if (Model.laptop.Id != 0)
+            {
+                <input type="hidden" asp-for="@Model.laptop.Id" />
+            }
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class=" border container p-2 m-2">
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.LaptopCompanyId" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(m=>m.laptop.LaptopCompanyId,Model.LaptopCompanyList,"Select Brand",new{@class="form-control text-center"})
+                        <span asp-validation-for="laptop.LaptopCompanyId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.ModelName" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.ModelName" class="text-center form-control" />
+                        <span asp-validation-for="laptop.ModelName" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.ProcessorId" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(m=>m.laptop.ProcessorId,Model.ProcessorList,"Select CPU Model",new{@class="form-control text-center"})
+                        <span asp-validation-for="laptop.ProcessorId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.GraphicsCardId" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        @Html.DropDownListFor(m=>m.laptop.GraphicsCardId,Model.GraphicsCardList,"Select Graphics Card",new{@class="form-control text-center"})
+                        <span asp-validation-for="laptop.GraphicsCardId" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.RamMemory" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.RamMemory" class="text-center form-control" />
+                        <span asp-validation-for="laptop.RamMemory" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.StorageSpace" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.StorageSpace" class="text-center form-control" />
+                        <span asp-validation-for="laptop.StorageSpace" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.OperatingSystem" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.OperatingSystem" class="text-center form-control" />
+                        <span asp-validation-for="laptop.OperatingSystem" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.Colour" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.Colour" class="text-center form-control" />
+                        <span asp-validation-for="laptop.Colour" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.Description" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <textarea asp-for="laptop.Description" class="form-control"></textarea>
+                        <span asp-validation-for="laptop.Description" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.ListPrice" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.ListPrice" class="text-center form-control" />
+                        <span asp-validation-for="laptop.ListPrice" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.Price" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.Price" class="text-center form-control" />
+                        <span asp-validation-for="laptop.Price" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.Price10" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.Price10" class="text-center form-control" />
+                        <span asp-validation-for="laptop.Price10" class="text-danger "></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.ListPrice20" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input asp-for="laptop.ListPrice20" class="text-center form-control" />
+                        <span asp-validation-for="laptop.ListPrice20" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group row p-2 m-2">
+                    <div class="col-4">
+                        <label asp-for="laptop.ImageUrl" class="text-center"></label>
+                    </div>
+                    <div class="col-8">
+                        <input type="file" name="files" id="uploadBox" multiple class="form-control" />
+                        <span asp-validation-for="laptop.ListPrice20" class="text-danger"></span>
+                    </div>
+                </div>
+                <div class="form-group  p-2 m-2">
+                    <div class="offset-4 col-8">
+                        <div class="row">
+                            <div class="col">
+                                @if (Model.laptop.Id == 0)
+                                {
+                                    <button type="submit" onclick="return ValData()" class="btn btn-success form-control">
+                                        <i class="fas fa-save"></i>
+                                        Save
+                                    </button>
+                                }
+                                else
+                                {
+                                    <button type="submit" class="btn btn-success form-control">
+                                        <i class="fas fa-save"></i>
+                                        Update
+                                    </button>
+                                }
+                            </div>
+                            <div class="col">
+                                <a asp-action="Index" class="btn btn-info form-control">
+                                    <i class="fas fa-list"></i>
+                                    Back To List
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </form>
+    </div>
+    @if (Model.laptop.Id != 0)
+    {
+        <div class="col-4 text-center">
+            <div class=" border container p-2 m-2">
+                <img src="@Model.laptop.ImageUrl" />
+            </div>
+        </div>
+    }
+</div>
+@section scripts
+    {
+    <partial name="_ValidationScriptsPartial" />
+    <script src="https://cdn.tiny.cloud/1/yceb7wqr2ps5v3vunieemb9syejgjl73j210uk6duakmo75e/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({
+            selector: "textarea",
+            plugins: "lists",
+            menubar: "file edit format"
+        })
+        function ValData() {
+            if (document.getElementById('uploadBox').value == "") {
+                swal("Error", "Please Select Image!!!", 'error');
+                return false;
+            }
+        }
+    </script>
+}

@@ -1,0 +1,134 @@
+﻿@model Project_Ecomm_Models.ViewModels.ProductVM
+@{
+    ViewData["Title"] = "Upsert";
+    var title =Model.product.Id != 0 ? "EditProduct" : "NewProduct";
+    <h2><i class="fas fa-dice-d20 text-success"></i></h2>
+}
+<div class="row border-bottom">
+    <h2 class="text-primary">@title</h2>
+</div>
+<div class="row">
+    <div class="col-md-6">
+     <form method="post" enctype="multipart/form-data">
+     <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+     @if(Model.product.Id!=0)
+            {
+                <input type="hidden" asp-for="@Model.product.Id"/>
+            }
+            <div class="form-group">
+                <i class="fa fa-refresh text-primary"></i>
+                <label asp-for="product.Title"></label>
+                <input asp-for="product.Title" class="form-control"/>
+                <span asp-validation-for="product.Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-spinner text-primary"></i>
+                <label asp-for="product.ISBN"></label>
+                <input asp-for="product.ISBN" class="form-control" />
+                <span asp-validation-for="product.ISBN" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-cogs text-primary"></i>
+                <label asp-for="product.Description"></label>
+                <textarea asp-for="product.Description" class="form-control"></textarea>
+                <span asp-validation-for="product.Description" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-child text-primary"></i>
+                <label asp-for="product.Author"></label>
+                <input asp-for="product.Author" class="form-control" />
+                <span asp-validation-for="product.Author" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-inr text-primary"></i>
+                <label asp-for="product.ListPrice"></label>
+                <input asp-for="product.ListPrice" class="form-control" />
+                <span asp-validation-for="product.ListPrice" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fa fa-money text-primary"></i>
+                <label asp-for="product.Price"></label>
+                <input asp-for="product.Price" class="form-control" />
+                <span asp-validation-for="product.Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-globe-americas text-primary"></i>
+                <label asp-for="product.Price50"></label>
+                <input asp-for="product.Price50" class="form-control" />
+                <span asp-validation-for="product.Price50" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-power-off text-primary"></i>
+                <label asp-for="product.Price100"></label>
+                <input asp-for="product.Price100" class="form-control" />
+                <span asp-validation-for="product.Price100" class="text-danger"></span>
+            </div>
+            
+            <div class="form-group">   @*step 3 multiple table se data lane ka *@
+                <i class="fas fa-toggle-on text-primary"></i>
+                <label asp-for="product.CategoryId"></label>
+                @Html.DropDownListFor(m=>m.product.CategoryId,Model.CategoryList,"Select Category",new{@class="form-control"})
+                <span asp-validation-for="product.CategoryId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-toggle-off text-primary"></i>
+                <label asp-for="product.CoverTypeId"></label>
+                @Html.DropDownListFor(m=>m.product.CoverTypeId,Model.CoverTypeList,"Select CoverType",new{@class="form-control"})
+                <span asp-validation-for="product.CoverTypeId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <i class="fas fa-image text-primary"></i>
+                <label asp-for="product.ImageUrl"></label>
+                <input type="file" name="files" id="UpLoadBox" class="form-control"/>
+            </div>
+            <div class="form-group p-2 m-2">
+                @if(Model.product.Id!=0)
+                {
+                    <partial name="_EditAndBackToListButton" />
+                }
+                else
+                {
+                    <div class="row">
+                        <div class="col">
+                            <button type="submit"onclick="return VAlData()" class="btn btn-success form-control">
+                                <i class="fas fa-first-aid text-black"></i> Save
+                            </button>
+                        </div>
+                        <div class="col">
+                            <a asp-action="Index" class="btn btn-info form-control">
+                                <i class="fas fa-cannabis text-black"></i> BackToList
+                            </a>
+                        </div>
+                    </div>
+                }
+            </div>
+        </form>      
+    </div>
+    <div class="col-md-1 p-1 m-1">
+        @if(Model.product.Id!=0)
+        {
+            <img src="@Model.product.ImageUrl"/>
+        }
+    </div>
+</div>
+
+@section Scripts
+{
+    <partial name="_ValidationScriptsPartial" />
+     @* Description me cdn.tiny apply krne  k leye upr column m bi chng h kuch  *@
+    <script src="https://cdn.tiny.cloud/1/yceb7wqr2ps5v3vunieemb9syejgjl73j210uk6duakmo75e/tinymce/5/tinymce.min.js" referrerpolicy="origin"></script>
+    <script>
+        tinymce.init({                     
+            selector:"textarea",
+            plugins:"lists",
+            menubar:"file edit format"
+        })
+                //image null ho to popup m error dene k leye  column m bi chng h kuch
+        function VAlData(){
+            if (document.getElementById("UpLoadBox").value == "") {
+                swal("Error", "Please Select Image!!", "error");
+                return false;
+            }
+        }
+    </script>
+}

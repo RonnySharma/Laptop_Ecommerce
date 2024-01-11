@@ -1,0 +1,100 @@
+﻿@model Laptop_Ecommerce.Models.Company
+@{
+    ViewData["Title"] = "Upsert";
+    var title = Model.Id != 0 ? "Edit Company Info" : "Add New Company";
+}
+<form method="post">
+    <div class="row">
+        <div class="col-10 border-bottom">
+            <h2 class="text-primary text-center">
+                @if (Model.Id == 0)
+                {
+                    <i class="fas fa-plus"></i>
+
+                    @title
+                }
+                else
+                {
+                    <i class="fas fa-edit"></i>
+
+                    @title
+                }
+            </h2>
+        </div>
+        <div asp-validation-summary="ModelOnly"></div>
+        <div class="col-8">
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="Name" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="Name" class="form-control text-center" />
+                    <span asp-validation-for="Name" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="StreetAddress" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="StreetAddress" class="form-control text-center" />
+                    <span asp-validation-for="StreetAddress" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="State" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="State" class="form-control text-center" />
+                    <span asp-validation-for="State" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="City" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="City" class="form-control text-center" />
+                    <span asp-validation-for="City" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="PostalCode" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PostalCode" class="form-control text-center" />
+                    <span asp-validation-for="PostalCode" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="PhoneNumber" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input asp-for="PhoneNumber" class="form-control text-center" />
+                    <span asp-validation-for="PhoneNumber" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating row p-2 m-2">
+                <div class="col-4">
+                    <label asp-for="IsAuthorizedCompany" class="text-primary"></label>
+                </div>
+                <div class="col-8">
+                    <input type="checkbox" asp-for="IsAuthorizedCompany" class="text-center" />
+                    <span asp-validation-for="IsAuthorizedCompany" class="text-danger"></span>
+                </div>
+            </div>
+            <div class="form-floating  p-2 m-2">
+                <div class="offset-4">
+                    <partial name="_SaveUpdateBackToListButtons" />
+                </div>
+            </div>
+        </div>
+    </div>
+</form>
+
+@section scripts{
+    <partial name="_ValidationScriptsPartial" />
+}

@@ -1,0 +1,29 @@
+﻿<div class="row">
+    <div class="col-9">
+        <h2 class="text-primary">
+        <i class="fas fa-paw text-warning"></i>ProductList</h2>
+    </div>
+    <div class="col-3">
+        <a asp-action="Upsert" class="btn btn-info">
+            <i class="fas fa-spider text-black"></i> NewProduct
+        </a>
+    </div>
+</div>
+<div class="border p-2 m-2">
+    <table id="tblData" class="table table-bordered table-striped table-active">
+        <thead>
+            <tr>
+                <th class="text-primary"><i class="fas fa-audio-description text-primary"></i>Title</th>
+                <th class="text-primary"><i class="fas fa-handshake text-primary"></i>Description</th>
+                <th class="text-primary"><i class="fas fa-hat-cowboy-side text-primary"></i>Author</th>
+                <th class="text-primary"><i class="fas fa-barcode text-primary"></i>ISBN</th>
+                <th class="text-primary"><i class="fas fa-dollar-sign text-primary"></i>Price</th>
+                <th class="text-primary"><i class="fas fa-gamepad text-primary"></i>Action</th>
+            </tr>
+        </thead>
+    </table>
+</div>
+@section Scripts
+{
+    <script src="~/js/Product.js"></script>
+}
